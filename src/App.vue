@@ -10,6 +10,7 @@
         <img src="./assets/nasaLogo.png" alt="">
       </v-avatar>
     </v-toolbar>
+    <Home/>
   </v-app>
 </template>
 <style>
@@ -17,7 +18,11 @@
 </style>
 
 <script type="text/javascript">
+import Home from "./views/Home"
 export default{
+  components:{
+    Home
+  },
   data(){
     return{
       info: []
