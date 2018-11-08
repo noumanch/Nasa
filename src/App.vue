@@ -2,37 +2,42 @@
   <v-app>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+        <span>Nasa</span>
+        <span class="font-weight-light"> Image gallery</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
+      <v-avatar>
+        <img src="./assets/nasaLogo.png" alt="">
+      </v-avatar>
     </v-toolbar>
-
-    <v-content>
-      <HelloWorld/>
-    </v-content>
   </v-app>
 </template>
+<style>
 
-<script>
-import HelloWorld from './components/HelloWorld'
+</style>
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  data () {
-    return {
-      //
+<script type="text/javascript">
+export default{
+  data(){
+    return{
+      info: []
     }
-  }
-}
-</script>
+  },
+  created(){
+    this.nasaData()
+  },
+  methods:{
+    nasaData(){
+     fetch(`https://images-api.nasa.gov/search?q=moon&year_start=2018`)
+    .then(function(data){
+      return data.json()
+    })
+    .then(myData => {
+      this.info = myData.collection.items;
+      console.log(this.info)
+      this.$store.commit('getInfo',this.info);
+    })
+    }
+   }
+ }
+ </script>
