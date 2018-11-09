@@ -1,11 +1,18 @@
 <template>
-<div>
-  <div class="container" v-for="check in getImages">
-    <div class="row" v-if="check != null">
-        <img :src="check" alt="">
+  <div class="container home">
+    <div class="row">
+      <div class="" v-for="check in getImages">
+        <div class="card shadow-lg p-3 mt-5 m-2" v-if="check != null">
+            <img class="card-img-top img" :src="check" alt="">
+            <div class="card-block" v-for="">
+              <h4 class="card-title">{{item}}</h4>
+              <a href="#" class="btn btn-primary">More Info</a>
+            </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+
 </template>
 
 
@@ -16,9 +23,9 @@
   .main{
     display: inline!important;
   }
-  img{
-    width: 30vw;
-    height: 40vh;
+  .img{
+    width: 30vw !important;
+    height: 40vh !important;
   }
 </style>
 <script>
@@ -33,7 +40,7 @@
     },
     getCenterInInfo(){
       //console.log(this.$store.state.info.map(data=>data.data.map(item=>item.center)));
-      return this.$store.state.info.map(data=>data.data.map(item=>item.center));
+      return this.$store.state.info.map(data=>data.data.map(item=>item.title));
     },
     getImages(){
     return this.$store.state.info.map(data=>{
